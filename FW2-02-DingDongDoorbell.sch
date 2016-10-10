@@ -255,6 +255,20 @@ chip</description>
 <text x="-2.54" y="1.27" size="0.4064" layer="25">&gt;Name</text>
 <text x="-2.794" y="-0.762" size="1.016" layer="21">&gt;Value</text>
 </package>
+<package name="AXIAL-0.4-LARGE">
+<wire x1="-3.048" y1="1.016" x2="3.048" y2="1.016" width="0.2032" layer="21"/>
+<wire x1="3.048" y1="1.016" x2="3.048" y2="0" width="0.2032" layer="21"/>
+<wire x1="3.048" y1="0" x2="3.048" y2="-1.016" width="0.2032" layer="21"/>
+<wire x1="3.048" y1="-1.016" x2="-3.048" y2="-1.016" width="0.2032" layer="21"/>
+<wire x1="-3.048" y1="-1.016" x2="-3.048" y2="0" width="0.2032" layer="21"/>
+<wire x1="-3.048" y1="0" x2="-3.048" y2="1.016" width="0.2032" layer="21"/>
+<wire x1="3.048" y1="0" x2="3.81" y2="0" width="0.2032" layer="21"/>
+<wire x1="-3.048" y1="0" x2="-3.81" y2="0" width="0.2032" layer="21"/>
+<pad name="P$1" x="-5.08" y="0" drill="0.9" diameter="1.778"/>
+<pad name="P$2" x="5.08" y="0" drill="0.9" diameter="1.778"/>
+<text x="-2.54" y="1.27" size="0.4064" layer="25">&gt;Name</text>
+<text x="-2.794" y="-0.762" size="1.016" layer="21">&gt;Value</text>
+</package>
 </packages>
 <symbols>
 <symbol name="FREETRONICS_RESISTOR">
@@ -340,6 +354,15 @@ Basic schematic elements and footprints for 0603, 1206, and PTH 1/10th watt (sma
 </technologies>
 </device>
 <device name="PTH2" package="FREETRONICS_AXIAL-0.4">
+<connects>
+<connect gate="G$1" pin="1" pad="P$1"/>
+<connect gate="G$1" pin="2" pad="P$2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="PTH3" package="AXIAL-0.4-LARGE">
 <connects>
 <connect gate="G$1" pin="1" pad="P$1"/>
 <connect gate="G$1" pin="2" pad="P$2"/>
@@ -1162,6 +1185,24 @@ NS Package M08A</description>
 <rectangle x1="-0.88" y1="2" x2="-0.39" y2="3.1" layer="51"/>
 <rectangle x1="-2.15" y1="2" x2="-1.66" y2="3.1" layer="51"/>
 </package>
+<package name="DIL08L">
+<wire x1="5.08" y1="2.921" x2="-5.08" y2="2.921" width="0.1524" layer="21"/>
+<wire x1="-5.08" y1="-2.921" x2="5.08" y2="-2.921" width="0.1524" layer="21"/>
+<wire x1="5.08" y1="2.921" x2="5.08" y2="-2.921" width="0.1524" layer="21"/>
+<wire x1="-5.08" y1="2.921" x2="-5.08" y2="1.016" width="0.1524" layer="21"/>
+<wire x1="-5.08" y1="-2.921" x2="-5.08" y2="-1.016" width="0.1524" layer="21"/>
+<wire x1="-5.08" y1="1.016" x2="-5.08" y2="-1.016" width="0.1524" layer="21" curve="-180"/>
+<pad name="1" x="-3.81" y="-3.81" drill="0.8128" diameter="1.4224" rot="R90"/>
+<pad name="2" x="-1.27" y="-3.81" drill="0.8128" diameter="1.4224" rot="R90"/>
+<pad name="7" x="-1.27" y="3.81" drill="0.8128" diameter="1.4224" rot="R90"/>
+<pad name="8" x="-3.81" y="3.81" drill="0.8128" diameter="1.4224" rot="R90"/>
+<pad name="3" x="1.27" y="-3.81" drill="0.8128" diameter="1.4224" rot="R90"/>
+<pad name="4" x="3.81" y="-3.81" drill="0.8128" diameter="1.4224" rot="R90"/>
+<pad name="6" x="1.27" y="3.81" drill="0.8128" diameter="1.4224" rot="R90"/>
+<pad name="5" x="3.81" y="3.81" drill="0.8128" diameter="1.4224" rot="R90"/>
+<text x="-5.334" y="-2.921" size="1.27" layer="25" ratio="10" rot="R90">&gt;NAME</text>
+<text x="-3.556" y="-0.635" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
+</package>
 </packages>
 <symbols>
 <symbol name="555">
@@ -1224,6 +1265,21 @@ NS Package M08A</description>
 <technology name="UA"/>
 </technologies>
 </device>
+<device name="L" package="DIL08L">
+<connects>
+<connect gate="A" pin="CV" pad="5"/>
+<connect gate="A" pin="DIS" pad="7"/>
+<connect gate="A" pin="GND" pad="1"/>
+<connect gate="A" pin="OUT" pad="3"/>
+<connect gate="A" pin="RST" pad="4"/>
+<connect gate="A" pin="THR" pad="6"/>
+<connect gate="A" pin="TR" pad="2"/>
+<connect gate="A" pin="V+" pad="8"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
 </devices>
 </deviceset>
 </devicesets>
@@ -1240,21 +1296,21 @@ NS Package M08A</description>
 <parts>
 <part name="JP2" library="freetronics-master-v1.1" deviceset="M01" device="PTH" value="PWR+"/>
 <part name="JP1" library="freetronics-master-v1.1" deviceset="M01" device="PTH" value="PWR-"/>
-<part name="R1" library="freetronics" deviceset="FREETRONICS_RESISTOR" device="PTH2" value="68K"/>
-<part name="R2" library="freetronics" deviceset="FREETRONICS_RESISTOR" device="PTH2" value="68K"/>
-<part name="R3" library="freetronics" deviceset="FREETRONICS_RESISTOR" device="PTH2" value="68K"/>
-<part name="R4" library="freetronics" deviceset="FREETRONICS_RESISTOR" device="PTH2" value="10K"/>
-<part name="R5" library="freetronics" deviceset="FREETRONICS_RESISTOR" device="PTH2" value="15R"/>
+<part name="R1" library="freetronics" deviceset="FREETRONICS_RESISTOR" device="PTH3" value="68K"/>
+<part name="R2" library="freetronics" deviceset="FREETRONICS_RESISTOR" device="PTH3" value="68K"/>
+<part name="R3" library="freetronics" deviceset="FREETRONICS_RESISTOR" device="PTH3" value="68K"/>
+<part name="R4" library="freetronics" deviceset="FREETRONICS_RESISTOR" device="PTH3" value="10K"/>
+<part name="R5" library="freetronics" deviceset="FREETRONICS_RESISTOR" device="PTH3" value="15R"/>
 <part name="JP5" library="freetronics-master-v1.1" deviceset="M01" device="PTH" value="PWR-"/>
 <part name="JP6" library="freetronics-master-v1.1" deviceset="M01" device="PTH" value="PWR-"/>
 <part name="JP4" library="freetronics-master-v1.1" deviceset="M01" device="PTH" value="SPKR-"/>
 <part name="JP3" library="freetronics-master-v1.1" deviceset="M01" device="PTH" value="SPKR+"/>
 <part name="D1" library="freetronics-2" deviceset="DIODE" device="PTH" value="1N4001"/>
 <part name="C1" library="freetronics-2" deviceset="CAP" device="PTH" value="100nF"/>
-<part name="C3" library="freetronics-jon.1" deviceset="CAP_POL" device="PTH2" value="47uF 25V"/>
+<part name="C3" library="freetronics-jon.1" deviceset="CAP_POL" device="PTH2" value="47uF"/>
 <part name="D2" library="freetronics-2" deviceset="DIODE" device="PTH" value="1N4001"/>
-<part name="C2" library="freetronics-jon.1" deviceset="CAP_POL" device="PTH2" value="10uF 25V"/>
-<part name="IC1" library="freetronics-jon" deviceset="*555" device="N" technology="LM"/>
+<part name="C2" library="freetronics-jon.1" deviceset="CAP_POL" device="PTH2" value="10uF"/>
+<part name="IC1" library="freetronics-jon" deviceset="*555" device="L" value="555L"/>
 </parts>
 <sheets>
 <sheet>
@@ -1505,6 +1561,11 @@ NS Package M08A</description>
 </nets>
 </sheet>
 </sheets>
+<errors>
+<approved hash="202,1,78.74,86.36,IC1,CV,,,,"/>
+<approved hash="104,1,68.58,104.14,IC1,V+,N$4,,,"/>
+<approved hash="104,1,68.58,78.74,IC1,GND,N$10,,,"/>
+</errors>
 </schematic>
 </drawing>
 </eagle>
